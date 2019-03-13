@@ -1,18 +1,30 @@
 {
-    "compilerOptions": {
-        "module": "system",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "outFile": "../../built/local/tsc.js",
-        "sourceMap": true,
-        "lib": [ "es2015" ]
-    },
-    "include": [
-        "./**/*"
+  "compilerOptions": {
+    "outDir": "../out-tsc/e2e",
+    "sourceMap": false,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "module": "commonjs",
+    "target": "es5",
+    "types": [],
+    "typeRoots": [
+      "node_modules/@types"
     ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    
+    
+  },
+  "include": [
+    "./src/**/*"
+    ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
     ]
 }
