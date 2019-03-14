@@ -10,7 +10,7 @@ import {WebDriver, Builder, By, ThenableWebDriver, until, WebElement} from 'sele
         await driver.findElement(By.css("#ember14")).sendKeys("ddd@test.com");
         await driver.findElement(By.xpath("//button[contains(text(),'Request')]")).click();
         await driver.wait(until.elementLocated(By.css(".alert")), 3000);
-        let doupa = driver.findElement(By.xpath("//button[contains(text(),'Request')]")).getText().then(function(result) {
+        driver.findElement(By.xpath("//button[contains(text(),'Request')]")).getText().then(function(result) {
             console.log(result);
         });
         await driver.close();
