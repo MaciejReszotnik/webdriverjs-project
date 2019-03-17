@@ -1,5 +1,7 @@
-#node modules
+#ignore folders
 node_modules/
 test_reports/
+compiled_files/
+
 
 package-lock.json

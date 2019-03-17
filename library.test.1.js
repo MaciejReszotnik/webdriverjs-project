@@ -3,8 +3,8 @@ require('mocha');
 // require('chai');
 const webdriver = require ('selenium-webdriver'),
     {describe, it, after, before} = require('selenium-webdriver/testing');
-        By = webdriver.By;
-        until = webdriver.until;
+const By = webdriver.By;
+const until = webdriver.until;
 
 let driver;
 
@@ -44,7 +44,7 @@ it('mocha test 2', function(){
     });
 })
 
-it('mocha test 23', function(){
+it('mocha test 3', function(){
     driver.findElement(By.css("#ember14")).sendKeys("ddd@test.com");
     driver.findElement(By.xpath("//button[contains(text(),'Request')]")).click();
     driver.wait(until.elementLocated(By.css(".alert")), 3000);

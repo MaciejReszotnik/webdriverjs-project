@@ -4,14 +4,22 @@
   "description": "",
   "main": "library.js",
   "scripts": {
-    "test": "mocha-parallel-tests test --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results,html=true"
+    "test": "mocha-parallel-tests compiled_files --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results,html=true",
+    "build": "./node_modules/.bin/babel test --out-dir compiled_files"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
+    "@babel/plugin-transform-typescript": "^7.3.2",
+    "@babel/preset-env": "^7.3.4",
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.6",
     "@types/selenium-webdriver": "^3.0.4",
+    "babel-preset-env": "^1.7.0",
     "chromedriver": "^2.30.1",
     "mocha": "^3.4.2",
     "mocha-junit-reporter": "^1.18.0",
@@ -23,6 +31,7 @@
     "typescript": "^2.4.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "ts-node": "^8.0.3"
   }
 }
