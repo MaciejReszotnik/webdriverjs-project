@@ -1,4 +1,5 @@
 #node modules
 node_modules/
+test_reports/
 
 package-lock.json
