@@ -4,8 +4,8 @@
   "description": "",
   "main": "library.js",
   "scripts": {
-    "test": "mocha-parallel-tests compiled_files --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results,html=true",
-    "build": "./node_modules/.bin/babel test --out-dir compiled_files"
+    "test": "mocha-parallel-tests dist --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results,html=true",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -27,11 +27,11 @@
     "mochawesome": "^3.1.1",
     "reflect-metadata": "^0.1.10",
     "selenium-webdriver": "^3.4.0",
-    "tslint": "^5.4.3",
-    "typescript": "^2.4.1"
+    "tslint": "^5.4.3"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "ts-node": "^8.0.3"
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.3333"
   }
 }

@@ -1,4 +1,0 @@
-[0315/075000.169:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
-[0315/075000.170:ERROR:exception_snapshot_win.cc(98)] thread ID 15744 not found in process
-[0317/182356.021:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
-[0317/182356.022:ERROR:exception_snapshot_win.cc(88)] thread ID 8072 not found in process
