@@ -1,18 +1,9 @@
-import { WebDriverWrapper } from "../helpers/webdriverWrapper";
 import { By } from "selenium-webdriver";
+import { WebDriverWrapper } from "../helpers/webdriverWrapper";
 import { NavigationComponent } from "./pageComponents/navigationComponent";
 
-// const Locator = {
-//     mainNavLink: (linkText:string) => 
-//         By.xpath(`//ul[@id='top-menu']/li/a[contains(text(),
-//             \'${linkText}\')]`),
-//     subNavLink: (linkText:string) => By.xpath(`//ul/li/a[contains(text(), \'${linkText}\')]`),
-//     sendEmailBtn: () => By.xpath("//a[contains(text(), 'Kontakt aufnehmen')]"),
-//     cookiesBtn: () => By.xpath("//*[@aria-label='allow cookies']")
-// }
-
 export class BasePage {
-    protected webUI:WebDriverWrapper;
+    protected webUI: WebDriverWrapper;
     protected navigation: NavigationComponent;
 
     constructor(webUI: WebDriverWrapper) {
@@ -27,17 +18,9 @@ export class BasePage {
     }
 
     public scrollToElement = (locator: By) => {
-        let element = this.webUI.findElement(locator);
+        const element = this.webUI.findElement(locator);
         this.webUI.executeScript("arguments[0].scrollIntoView()", element);
-        this.webUI.sleep(300);
+        this.webUI.waitForVisibilityOfElement(500);
     };
 
-    Locator = {
-        mainNavLink: (linkText:string) => 
-            By.xpath(`//ul[@id='top-menu']/li/a[contains(text(),
-                \'${linkText}\')]`),
-        subNavLink: (linkText:string) => By.xpath(`//ul/li/a[contains(text(), \'${linkText}\')]`),
-        sendEmailBtn: () => By.xpath("//a[contains(text(), 'Kontakt aufnehmen')]"),
-        cookiesBtn: () => By.xpath("//*[@aria-label='allow cookies']")
-    }
 }

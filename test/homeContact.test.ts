@@ -1,43 +1,49 @@
 import 'chromedriver';
-const assert = require('assert');
+import 'iedriver';
+import * as assert from 'assert';
 import { WebDriverWrapper } from './helpers/webdriverWrapper';
 import { HomePage } from './pageObjects/homePage';
 import { ContactPage } from './pageObjects/contactPage';
 import 'mocha';
-const webdriver = require ('selenium-webdriver'),
-    {describe, it, after, before} = require('selenium-webdriver/testing');
-const By = webdriver.By;
+import { NavigationComponent } from './pageObjects/pageComponents/navigationComponent';
+import {describe, it, after, before} from 'selenium-webdriver/testing';
 
 let driver:WebDriverWrapper;
 let homePage: HomePage;
 let contactPage: ContactPage;
+let navigation: NavigationComponent;
 
 let expectedEmail = 'hello@qualityminds.de'
+let browsers = ['ie', 'chrome'];
 
-// describe('Home page and Contact page tests', function() {
-//     this.timeout(1000000);
 
-//     beforeEach(function(){
-//         driver = new WebDriverWrapper('chrome');
-//         homePage = new HomePage(driver);
-//         homePage.navigateToPage();
-//     })
+browsers.forEach((browser) => { 
+describe('Home page and Contact page tests', function() {
+    this.timeout(1000000);
 
-//     afterEach(async function (){
-//         await driver.quit();
-//     })
+    before(function(){
+        driver = new WebDriverWrapper(browser);
+        homePage = new HomePage(driver);
+        navigation = new NavigationComponent(driver);
+        homePage.navigateToPage();
+    })
 
-//     it("'Kontakt aufnehmen' button on the home page contains correct email address", async function(){
-//         homePage.acceptCookies();
-//         let emailAttribute = await homePage.getEmailAttribute();
-//         assert(emailAttribute.trim().includes(expectedEmail));
-//     })
+    after(async function (){
+        await driver.quit();
+    });
 
-//     it("Contact page contains correct email address", async function(){
-//         homePage.clickNavElement('Kontakt');
-//         contactPage = new ContactPage(driver);
-//         let emailAttribute = await contactPage.getEmailAttribute(expectedEmail);
-//         assert(emailAttribute.trim().includes(expectedEmail));
-//     })
+    it("'Kontakt aufnehmen' button on the home page contains correct email address", async function(){
+        homePage.acceptCookies();
+        let emailAttribute = await homePage.getEmailAttribute();
+        assert(emailAttribute.trim().includes(expectedEmail));
+    })
 
-// });
+    it("Contact page contains correct email address", async function(){
+        navigation.clickNavElement('Kontakt');
+        contactPage = new ContactPage(driver);
+        let emailAttribute = await contactPage.getEmailAttribute(expectedEmail);
+        assert(emailAttribute.trim().includes(expectedEmail));
+    })
+});
+
+});
