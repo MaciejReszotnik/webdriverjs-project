@@ -27,11 +27,11 @@
     "mochawesome": "^3.1.1",
     "reflect-metadata": "^0.1.10",
     "selenium-webdriver": "^3.4.0",
-    "tslint": "^5.4.3"
+    "tslint": "^5.4.3",
+    "typescript": "^3.3.3333"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "ts-node": "^8.0.3",
-    "typescript": "^3.3.3333"
+    "ts-node": "^8.0.3"
   }
 }
