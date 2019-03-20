@@ -1,5 +1,6 @@
+import { By, WebElementPromise } from 'selenium-webdriver';
+
 import { WebDriverWrapper } from '../../helpers/webdriverWrapper';
-import { By, WebElementPromise, promise } from 'selenium-webdriver';
 
 const Locator = {
     mainNavLink: (linkText: string) =>

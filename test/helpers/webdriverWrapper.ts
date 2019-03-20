@@ -2,7 +2,7 @@ import 'chromedriver';
 import 'selenium-webdriver';
 import * as chromeSettings from 'selenium-webdriver/chrome';
 import * as firefoxSettings from 'selenium-webdriver/firefox';
-import { Builder, By, ThenableWebDriver, until, WebElementCondition, WebElementPromise } from 'selenium-webdriver';
+import { Builder, By, ThenableWebDriver, until, WebElementCondition, WebElementPromise, promise } from 'selenium-webdriver';
 
 export class WebDriverWrapper {
 
@@ -16,6 +16,7 @@ export class WebDriverWrapper {
             chromeOptions.setUserPreferences({'download.default_directory' : '../downloads'});
             this.driver = new Builder().forBrowser(driverName).setChromeOptions(chromeOptions).build();
         } else {
+
             this.driver = new Builder().forBrowser(driverName).build();
         }
         this.driver.manage().timeouts().pageLoadTimeout(pageLoadTimeout);
@@ -32,8 +33,10 @@ export class WebDriverWrapper {
 
     public scrollToElement = (locator: By) => {
         const element = this.waitForElement(locator);
-        this.driver.executeScript('arguments[0].scrollIntoView()', element);
-        this.driver.sleep(300);
+        this.executeScript('arguments[0].scrollIntoView()', element);
+        // Firefox scrolls incorrectly so slight correction is necessary
+        this.executeScript('window.scrollBy(0, -200)');
+        return element;
     }
 
     public waitUntil = (condition: WebElementCondition, timeout: number) => {

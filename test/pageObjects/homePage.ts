@@ -1,24 +1,19 @@
+import { By } from 'selenium-webdriver';
+
 import { WebDriverWrapper } from '../helpers/webdriverWrapper';
 import { PageLink } from '../enums/page_links.enum';
-import { By } from 'selenium-webdriver';
 import { BasePage } from './basePage';
-import { IPage } from './interfaces/IPage';
 
 const Locator = {
     cookiesBtn: () => By.xpath('//*[@aria-label="allow cookies"]'),
     sendEmailBtn: () => By.xpath('//a[contains(text(), "Kontakt aufnehmen")]'),
 };
 
-export class HomePage extends BasePage implements IPage {
+export class HomePage extends BasePage {
 
     constructor(webUI: WebDriverWrapper) {
         super(webUI);
-    }
-
-    public getPageLink = (): string => PageLink.HomePage;
-
-    public navigateToPage = (): void => {
-        this.webUI.navigateTo(this.getPageLink());
+        this.url = PageLink.HomePage;
     }
 
     public acceptCookies = (): void => {

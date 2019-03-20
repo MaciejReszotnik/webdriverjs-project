@@ -16,7 +16,7 @@ let homePage: HomePage;
 let contactPage: ContactPage;
 let navigation: NavigationComponent;
 
-browsers.browserNames.forEach((browserName) => {
+['firefox', 'chrome'].forEach(async (browserName) => {
     describe(`Home page and Contact page tests - ${browserName} tests`, function() {
         this.timeout(1000000);
 

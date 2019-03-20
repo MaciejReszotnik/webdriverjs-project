@@ -4,8 +4,9 @@
   "description": "",
   "main": "library.js",
   "scripts": {
-    "test": "mocha-parallel-tests dist --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results,html=true",
-    "build": "tsc"
+    "test": "mocha-parallel-tests dist -s 15000 --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results,html=true",
+    "compile": "tsc",
+    "compile-watch": "tsc -w"
   },
   "author": "",
   "license": "ISC",

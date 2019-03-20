@@ -1,8 +1,9 @@
-import { By } from 'selenium-webdriver';
+import { PageLink } from './../enums/page_links.enum';
 import { WebDriverWrapper } from '../helpers/webdriverWrapper';
 import { NavigationComponent } from './pageComponents/navigationComponent';
 
 export class BasePage {
+    protected url: PageLink;
     protected webUI: WebDriverWrapper;
     protected navigation: NavigationComponent;
 
@@ -11,15 +12,14 @@ export class BasePage {
         this.navigation = new NavigationComponent(webUI);
     }
 
+    public navigateToPage = (): void => {
+        this.webUI.navigateTo(this.getPageLink());
+    }
+
     public navigateViaSubNavElement = (mainNavLink: string, subNavLink: string) => {
         this.navigation.hoverNavElement(mainNavLink);
         this.navigation.clickSubNavElement(subNavLink);
     }
 
-    protected scrollToElement = (locator: By) => {
-        const element = this.webUI.findElement(locator);
-        // this.webUI.executeScript('arguments[0].scrollIntoView()', element);
-        // this.webUI.executeScript('window.scrollBy(0,1000)');
-        this.webUI.waitForVisibilityOfElement(locator, 500);
-    }
+    private getPageLink = (): string => this.url;
 }
