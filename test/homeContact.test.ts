@@ -16,7 +16,7 @@ let homePage: HomePage;
 let contactPage: ContactPage;
 let navigation: NavigationComponent;
 
-['firefox', 'chrome'].forEach(async (browserName) => {
+['firefox', 'chrome'].reverse().forEach(async (browserName) => {
     describe(`Home page and Contact page tests - ${browserName} tests`, function() {
         this.timeout(1000000);
 

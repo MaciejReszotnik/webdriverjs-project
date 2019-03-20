@@ -17,7 +17,7 @@ let homePage: HomePage;
 let webAutomationPage: WebAutomationPage;
 let navigation: NavigationComponent;
 
-['chrome', 'firefox'].forEach(async (browserName) => {
+browser.browserNames.forEach(async (browserName) => {
     describe(`Web Automation page tests - ${browserName} tests`, function() {
         this.timeout(100000);
 
