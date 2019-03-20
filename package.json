@@ -14,15 +14,18 @@
     "@types/node": "^8.0.6",
     "@types/selenium-webdriver": "^3.0.4",
     "chromedriver": "^2.30.1",
+    "geckodriver": "^1.12.0",
     "mocha": "^3.4.2",
     "mocha-parallel-tests": "^2.0.6-alpha.3",
     "mochawesome": "^3.1.1",
     "reflect-metadata": "^0.1.10",
+    "request": "^2.88.0",
     "selenium-webdriver": "^3.4.0",
     "tslint": "^5.4.3",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
+    "@types/request": "^2.48.1",
     "edgedriver": "^4.17134.1",
     "iedriver": "^3.14.1",
     "operadriver": "^1.0.0",

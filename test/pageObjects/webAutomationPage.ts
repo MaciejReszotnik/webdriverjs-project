@@ -1,16 +1,14 @@
-import { BasePage } from "./basePage";
-import { By, promise } from "selenium-webdriver";
-import { IPage } from "./interfaces/IPage";
-import { PageLink } from "../enums/page_links.enum";
-import { WebDriverWrapper } from "../helpers/webdriverWrapper";
-
-
-
-
-import { NavigationComponent } from "./pageComponents/navigationComponent";
+import { BasePage } from './basePage';
+import { By, WebElementPromise } from 'selenium-webdriver';
+import { IPage } from './interfaces/IPage';
+import { PageLink } from '../enums/page_links.enum';
+import { WebDriverWrapper } from '../helpers/webdriverWrapper';
+import { NavigationComponent } from './pageComponents/navigationComponent';
 
 const Locator = {
-    selectionPane: () => By.xpath("//div[@id='team-tab-three-title-desktop']"),
+    paneActiveButton: (btnText: string) => By.xpath(`//div[@id='team-tab-three-body']//div[contains(@class, 'tab-download-button')]//a[text()=\'${btnText}\']`),
+    paneMobile: () => By.xpath('//div[@id="team-tab-three-title-desktop"]'),
+    paneSelectedItem: () => By.xpath('//*[contains(@class,"active-team-tab") and not(contains(@class, "inactive-team-tab"))]'),
 };
 
 export class WebAutomationPage extends BasePage implements IPage  {
@@ -20,16 +18,18 @@ export class WebAutomationPage extends BasePage implements IPage  {
         this.navigation = new NavigationComponent(webUI);
     }
 
-    public getPageLink = (): string => PageLink.ContactPage;
+    public getPageLink = (): string => PageLink.WebAutomationPage;
 
     public navigateToPage = (): void =>
         this.webUI.navigateTo(this.getPageLink())
 
-    public getColorFromElement = async (linkText: string): promise.Promise<string> => 
-         await this.navigation.getNavElement(linkText).getCssValue('color');
-
     public clickMobileElement = (): void => {
-        this.webUI.scrollToElement(Locator.selectionPane());
-        this.webUI.findElement(Locator.selectionPane()).click();
+        this.webUI.findElement(Locator.paneMobile()).click();
     }
+
+    public getSelectedPaneItem = (): WebElementPromise =>
+        this.webUI.findElement(Locator.paneSelectedItem())
+
+    public getPaneButton = (btnText: string): WebElementPromise =>
+        this.webUI.waitForVisibilityOfElement(Locator.paneActiveButton(btnText))
 }

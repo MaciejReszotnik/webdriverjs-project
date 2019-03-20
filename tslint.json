@@ -1,10 +1,10 @@
 {
     "extends": "tslint:recommended",
-    "rulesDirectory": ["path/to/custom/rules/directory/", "another/path/"],
     "rules": {
         "max-line-length": {
             "options": [160]
         },
+        "ban-types": false,
         "new-parens": true,
         "no-arg": true,
         "no-bitwise": true,
@@ -13,7 +13,10 @@
         "no-console": {
             "severity": "warning",
             "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
-        }
+        },
+        "only-arrow-functions": false,
+        "ordered-imports": false,
+        "quotemark": [true, "single", "jsx-double"]
     },
     "jsRules": {
         "max-line-length": {
