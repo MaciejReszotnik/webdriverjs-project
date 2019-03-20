@@ -1,12 +1,14 @@
 {
-  "name": "proj1",
+  "name": "webdriverjs-quality-minds",
   "version": "1.0.0",
   "description": "",
   "main": "library.js",
   "scripts": {
-    "test": "mocha-parallel-tests dist -s 15000 --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results,html=true",
+    "test": "mocha dist -s 15000 --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results_chrome,html=true --browser=chrome",
+    "test-firefox": "mocha dist -s 15000 --reporter mochawesome --reporter-options reportDir=test_reports,reportFilename=test_results_firefox,html=true --browser=firefox",    
     "compile": "tsc",
-    "compile-watch": "tsc -w"
+    "compile-watch": "tsc -w",
+    "test-all": "npm-run-all --parallel test test-firefox"
   },
   "author": "",
   "license": "ISC",
@@ -15,10 +17,12 @@
     "@types/node": "^8.0.6",
     "@types/selenium-webdriver": "^3.0.4",
     "chromedriver": "^2.30.1",
+    "concurrently": "^4.1.0",
     "geckodriver": "^1.12.0",
     "mocha": "^3.4.2",
     "mocha-parallel-tests": "^2.0.6-alpha.3",
     "mochawesome": "^3.1.1",
+    "npm-run-all": "^4.1.5",
     "reflect-metadata": "^0.1.10",
     "request": "^2.88.0",
     "selenium-webdriver": "^3.4.0",
