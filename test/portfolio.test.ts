@@ -68,7 +68,7 @@ describe(`Web Automation page tests - ${browserName} tests`, function() {
     });
 
     it('"Flyer Find the Bug Session" button has working link', async function() {
-        request('https://qualityminds.de/app/uploads/2018/11/Find-The-Mobile-Bug-Session.pdf', function (error, response, body) {
+        request('https://qualityminds.de/app/uploads/2018/11/Find-The-Mobile-Bug-Session.pdf', function(error, response, body) {
             assert(error === null);
             assert(response && response.statusCode === 200);
             assert(body !== null);

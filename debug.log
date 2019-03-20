@@ -1,6 +1,0 @@
-[0317/223233.542:ERROR:process_reader_win.cc(123)] NtOpenThread: {Odmowa dostêpu} Proces za¿¹da³ dostêpu do obiektu, ale prawa dostêpu nie zosta³y przyznane. (0xc0000022)
-[0317/223233.543:ERROR:exception_snapshot_win.cc(88)] thread ID 4224 not found in process
-[0320/114822.042:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
-[0320/114822.054:ERROR:exception_snapshot_win.cc(88)] thread ID 66048 not found in process
-[0320/133345.513:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
-[0320/133345.514:ERROR:exception_snapshot_win.cc(88)] thread ID 41076 not found in process
