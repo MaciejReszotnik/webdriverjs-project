@@ -3,5 +3,8 @@
     "textDefaultColor": "0, 0, 0",
     "clickedPaneElement": "Mobile",
     "selectedPaneItemColor": "74, 74, 74",
-    "linkToPDF": "https://qualityminds.de/app/uploads/2018/11/Find-The-Mobile-Bug-Session.pdf"
+    "linkToPDF": "https://qualityminds.de/app/uploads/2018/11/Find-The-Mobile-Bug-Session.pdf",
+    "contactPageUrl": "https://qualityminds.de/karriere/",
+    "applicationFormPageUrl": "https://qualityminds.de/kontaktformular/",
+    "applicationFormError": "Dies ist ein Pflichtfeld."
 }

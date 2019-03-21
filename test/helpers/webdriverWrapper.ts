@@ -23,19 +23,28 @@ export class WebDriverWrapper {
         this.driver.manage().window().maximize();
     }
 
+    public getUrl = () =>
+        this.driver.getCurrentUrl()
+
     public navigateTo(url: string) {
         this.driver.navigate().to(url.toString());
     }
 
-    public findElement = (locator: By) => {
-        return this.driver.findElement(locator);
-    }
+    public findElement = (locator: By) =>
+        this.driver.findElement(locator)
+
+    public findElements = (locator: By) =>
+        this.driver.findElements(locator)
+
+    public refreshPage = () =>
+            this.driver.navigate().refresh()
+
 
     public scrollToElement = (locator: By) => {
         const element = this.waitForElement(locator);
-        this.executeScript('arguments[0].scrollIntoView()', element);
+        this.executeScriptWithElement('arguments[0].scrollIntoView()', element);
         // Firefox scrolls incorrectly so slight correction is necessary
-        this.executeScript('window.scrollBy(0, -200)');
+        this.executeScriptWithElement('window.scrollBy(0, -200)');
         return element;
     }
 
@@ -48,16 +57,30 @@ export class WebDriverWrapper {
         return this.findElement(locator);
     }
 
+    public waitForElements = (locator: By, timeout: number = 2000) => {
+        this.driver.wait(until.elementsLocated(locator), timeout);
+        return this.findElements(locator);
+    }
+
     public waitForVisibilityOfElement = (locator: By, timeout = 2000) => {
         this.waitUntil(until.elementIsVisible(this.findElement(locator)), timeout);
         return this.findElement(locator);
     }
 
-    public isElementVisible = async (locator: By, timeout = 0): Promise<boolean> =>
-        await this.waitForElement(locator, timeout).isDisplayed()
+    public waitForRemovalOfElement = async (locator: By, timeout = 2000) => {
+        const staleElement = await this.findElement(locator);
+        this.driver.wait(until.stalenessOf(staleElement), timeout);
+    }
 
-    public executeScript = (passedFunction: string|Function, element?: WebElementPromise) => {
+    public isElementVisible = async (locator: By, timeout = 0): Promise<boolean> =>
+        this.waitForElement(locator, timeout).isDisplayed()
+
+    public executeScriptWithElement = (passedFunction: string|Function, element?: WebElementPromise) => {
         this.driver.executeScript(passedFunction, element);
+    }
+
+    public executeScript = (passedFunction: string|Function) => {
+        this.driver.executeScript(passedFunction);
     }
 
     public hover = (element: WebElementPromise): void => {

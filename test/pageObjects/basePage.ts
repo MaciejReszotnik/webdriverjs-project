@@ -1,6 +1,7 @@
 import { PageLink } from './../enums/page_links.enum';
 import { WebDriverWrapper } from '../helpers/webdriverWrapper';
 import { NavigationComponent } from './pageComponents/navigationComponent';
+import { promise } from 'selenium-webdriver';
 
 export class BasePage {
     protected url: PageLink;
@@ -13,13 +14,14 @@ export class BasePage {
     }
 
     public navigateToPage = (): void => {
-        this.webUI.navigateTo(this.getPageLink());
+        this.webUI.navigateTo(this.getDesiredPageUrl());
     }
 
-    public navigateViaSubNavElement = (mainNavLink: string, subNavLink: string) => {
-        this.navigation.hoverNavElement(mainNavLink);
-        this.navigation.clickSubNavElement(subNavLink);
-    }
+    public getCurrentPageUrl = (): promise.Promise<string> =>
+        this.webUI.getUrl()
 
-    private getPageLink = (): string => this.url;
+    public refreshPage = (): promise.Promise<void> =>
+        this.webUI.refreshPage()
+
+    private getDesiredPageUrl = (): string => this.url;
 }

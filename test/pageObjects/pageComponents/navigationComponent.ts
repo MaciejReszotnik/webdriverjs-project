@@ -29,7 +29,19 @@ export class NavigationComponent {
         this.webUI.hover(mainNavLink);
     }
 
+    public navigateViaSubNavElement = (mainNavLink: string, subNavLink: string) => {
+        this.hoverNavElement(mainNavLink);
+        this.clickSubNavElement(subNavLink);
+    }
+
+    public navigateViaSubNavElementFirefox = (subNavLink: string) => {
+        this.webUI.executeScript(`
+            var orgAttributes = document.querySelector("#menu-item-220").getAttribute("class");
+            document.querySelector("#menu-item-220").setAttribute("class", orgAttributes + "et-show-dropdown et-hover");
+            `);
+        this.clickSubNavElement(subNavLink);
+    }
+
     public getNavElement = (linkText: string): WebElementPromise =>
         this.webUI.waitForVisibilityOfElement(Locator.mainNavLink(linkText))
-
 }

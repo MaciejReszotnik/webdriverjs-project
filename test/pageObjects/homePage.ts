@@ -1,4 +1,4 @@
-import { By } from 'selenium-webdriver';
+import { By, promise } from 'selenium-webdriver';
 
 import { WebDriverWrapper } from '../helpers/webdriverWrapper';
 import { PageLink } from '../enums/page_links.enum';
@@ -16,11 +16,9 @@ export class HomePage extends BasePage {
         this.url = PageLink.HomePage;
     }
 
-    public acceptCookies = (): void => {
-        this.webUI.waitForVisibilityOfElement(Locator.cookiesBtn()).click();
-    }
+    public acceptCookies = (): promise.Promise<void> =>
+        this.webUI.waitForVisibilityOfElement(Locator.cookiesBtn()).click()
 
-    public getEmailAttribute() {
-        return this.webUI.findElement(Locator.sendEmailBtn()).getAttribute('href');
-    }
+    public getEmailAttribute = (): promise.Promise<string> =>
+        this.webUI.findElement(Locator.sendEmailBtn()).getAttribute('href')
 }

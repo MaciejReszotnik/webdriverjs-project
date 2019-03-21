@@ -1,7 +1,9 @@
 #ignore folders
-node_modules/
-test_reports/
-dist/
+node_modules/**
+test_reports/**
+dist/**
 
+#allowed files
+!dist/data/upload.jpg
 
 package-lock.json
