@@ -12,14 +12,15 @@ import { NavigationComponent } from './pageObjects/pageComponents/navigationComp
 import { TextFieldType } from './enums/textFieldTypes.enum.js';
 import { WebDriverWrapper } from './helpers/webdriverWrapper';
 
+const browserName = process.env.NODE_browser;
+let driver: WebDriverWrapper;
+
 let applicationFormPage: ApplicationFormPage;
 let careerPage: CareerPage;
-let driver: WebDriverWrapper;
 let homePage: HomePage;
 let navigation: NavigationComponent;
 
 // Get target browser from environment variable
-const browserName = process.argv[process.argv.length - 1].split('=').pop();
 
 describe(`Filling in application form tests - ${browserName} tests`, function() {
     this.timeout(1000000);
@@ -34,8 +35,8 @@ describe(`Filling in application form tests - ${browserName} tests`, function() 
         homePage.acceptCookies();
     });
 
-    after(async function() {
-        await driver.quit();
+    after(function() {
+        driver.quit();
     });
 
     it('"Contact" page has been opened', async function() {

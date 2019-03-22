@@ -10,16 +10,14 @@ import { NavigationComponent } from './pageObjects/pageComponents/navigationComp
 import { WebAutomationPage } from './pageObjects/webAutomationPage.js';
 import { WebDriverWrapper } from './helpers/webdriverWrapper';
 
-
-
-
+// Get target browser from passed environment variable
+const browserName = process.env.NODE_browser;
 let driver: WebDriverWrapper;
+
+
 let homePage: HomePage;
 let webAutomationPage: WebAutomationPage;
 let navigation: NavigationComponent;
-
-// Get target browser from passed environment variable
-const browserName = process.argv[process.argv.length - 1].split('=').pop();
 
 describe(`Web Automation page tests - ${browserName} tests`, function() {
     this.timeout(100000);

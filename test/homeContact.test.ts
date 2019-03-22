@@ -9,15 +9,13 @@ import { ContactPage } from './pageObjects/contactPage';
 import { HomePage } from './pageObjects/homePage';
 import { NavigationComponent } from './pageObjects/pageComponents/navigationComponent';
 
+// Get target browser from environment variable
 
-
+const browserName = process.env.NODE_browser;
 let driver: WebDriverWrapper;
 let homePage: HomePage;
 let contactPage: ContactPage;
 let navigation: NavigationComponent;
-
-// Get target browser from environment variable
-const browserName = process.argv[process.argv.length - 1].split('=').pop();
 
 describe(`Home page and Contact page tests - ${browserName} tests`, function() {
     this.timeout(1000000);

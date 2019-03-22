@@ -2,7 +2,7 @@ import { By, WebElementPromise } from 'selenium-webdriver';
 
 import { BasePage } from './basePage';
 import { NavigationComponent } from './pageComponents/navigationComponent';
-import { PageLink } from '../enums/page_links.enum';
+import { PageLink } from '../enums/pageLinks.enum';
 import { WebDriverWrapper } from '../helpers/webdriverWrapper';
 
 const Locator = {
