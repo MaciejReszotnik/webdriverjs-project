@@ -1,10 +1,10 @@
 import * as path from 'path';
 
-import { PageLink } from '../enums/page_links.enum';
-import { WebDriverWrapper } from '../helpers/webdriverWrapper';
 import { By, promise, WebElement } from 'selenium-webdriver';
 import { BasePage } from './basePage';
+import { PageLink } from '../enums/page_links.enum';
 import { TextFieldType } from '../enums/textFieldTypes.enum';
+import { WebDriverWrapper } from '../helpers/webdriverWrapper';
 
 const Locator = {
   agreementCheckbox: () => By.xpath('//input[@data-parsley-required="true"]'),
@@ -38,18 +38,20 @@ export class ApplicationFormPage extends BasePage {
   public isFileUploaded = (): promise.Promise<boolean> =>
     this.webUI.waitForElement(Locator.fileUploadField()).isDisplayed()
   public isFormPresent = (): promise.Promise<boolean> =>
-  this.webUI.waitForElement(Locator.submitBtn()).isDisplayed()
-  public isFormSubmitted = (): promise.Promise<boolean> =>
-    this.webUI.isElementVisible(Locator.submitConfirmation(), 5000)
+  this.webUI.waitForElement(Locator.submitBtn(), 5000).isDisplayed()
+  public isFormSubmitted = (): promise.Promise<boolean> => {
+    this.webUI.sleep(1000);
+    return this.webUI.waitForElement(Locator.submitConfirmation(), 5000).isDisplayed();
+  }
 
   public fillInWholeForm = async () => {
     const filePath = path.join(__dirname, '../../files/', 'upload.jpg');
-    this.refreshPage();
-    this.fillInTextFiled('Maciej', TextFieldType.FirstName);
-    this.fillInTextFiled('Testerski', TextFieldType.SecondName);
-    this.fillInTextFiled('testersky@test.com', TextFieldType.Email);
+    await this.refreshPage();
+    await this.fillInTextFiled('Maciej', TextFieldType.FirstName);
+    await this.fillInTextFiled('Testerski', TextFieldType.SecondName);
+    await this.fillInTextFiled('testersky@test.com', TextFieldType.Email);
     await this.uploadFile(filePath);
-    this.webUI.waitForElement(Locator.agreementCheckbox()).click();
+    await this.webUI.waitForElement(Locator.agreementCheckbox()).click();
   }
 
   public fillInTextFiled = (inputText: string, fieldType: TextFieldType): promise.Promise<void> =>

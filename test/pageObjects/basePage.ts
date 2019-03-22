@@ -1,7 +1,7 @@
+import { promise } from 'selenium-webdriver';
 import { PageLink } from './../enums/page_links.enum';
 import { WebDriverWrapper } from '../helpers/webdriverWrapper';
 import { NavigationComponent } from './pageComponents/navigationComponent';
-import { promise } from 'selenium-webdriver';
 
 export class BasePage {
     protected url: PageLink;

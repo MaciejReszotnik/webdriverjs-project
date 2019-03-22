@@ -1,8 +1,8 @@
 import { By, promise } from 'selenium-webdriver';
-
-import { WebDriverWrapper } from '../helpers/webdriverWrapper';
-import { PageLink } from '../enums/page_links.enum';
 import { BasePage } from './basePage';
+import { PageLink } from '../enums/page_links.enum';
+import { WebDriverWrapper } from '../helpers/webdriverWrapper';
+
 
 const Locator = {
     cookiesBtn: () => By.xpath('//*[@aria-label="allow cookies"]'),

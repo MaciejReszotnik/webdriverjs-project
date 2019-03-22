@@ -1,9 +1,9 @@
 import { By, WebElementPromise } from 'selenium-webdriver';
 
 import { BasePage } from './basePage';
+import { NavigationComponent } from './pageComponents/navigationComponent';
 import { PageLink } from '../enums/page_links.enum';
 import { WebDriverWrapper } from '../helpers/webdriverWrapper';
-import { NavigationComponent } from './pageComponents/navigationComponent';
 
 const Locator = {
     paneActiveButton: (btnText: string) => By.xpath(`//div[@id='team-tab-three-body']//div[contains(@class, 'tab-download-button')]//a[text()=\'${btnText}\']`),
@@ -19,13 +19,13 @@ export class WebAutomationPage extends BasePage {
         this.url = PageLink.WebAutomationPage;
     }
 
-    public clickMobileElement = (): void => {
-        this.webUI.scrollToElement(Locator.paneMobile()).click();
-    }
-
     public getSelectedPaneItem = (): WebElementPromise =>
         this.webUI.findElement(Locator.paneSelectedItem())
 
     public getPaneButton = (btnText: string): WebElementPromise =>
         this.webUI.waitForVisibilityOfElement(Locator.paneActiveButton(btnText))
+
+    public clickMobileElement = (): void => {
+        this.webUI.scrollToElement(Locator.paneMobile()).click();
+    }
 }

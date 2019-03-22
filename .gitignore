@@ -3,6 +3,9 @@ node_modules/**
 test_reports/**
 dist/**
 
+#ignore files
+**.log
+
 #allowed files
 !dist/data/upload.jpg
 

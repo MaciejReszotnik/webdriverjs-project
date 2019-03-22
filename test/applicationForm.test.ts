@@ -1,22 +1,21 @@
 import 'chromedriver';
 import 'geckodriver';
 import 'mocha';
-import * as path from 'path';
 import * as assert from 'assert';
+import * as path from 'path';
 import * as expectedResult from './data/expectedResults.json';
-import { WebDriverWrapper } from './helpers/webdriverWrapper';
-import { HomePage } from './pageObjects/homePage';
-
-import { NavigationComponent } from './pageObjects/pageComponents/navigationComponent';
 import { describe, it, after, before } from 'selenium-webdriver/testing';
-import { CareerPage } from './pageObjects/careerPage.js';
 import { ApplicationFormPage } from './pageObjects/applicationFormPage.js';
+import { CareerPage } from './pageObjects/careerPage.js';
+import { HomePage } from './pageObjects/homePage';
+import { NavigationComponent } from './pageObjects/pageComponents/navigationComponent';
 import { TextFieldType } from './enums/textFieldTypes.enum.js';
+import { WebDriverWrapper } from './helpers/webdriverWrapper';
 
+let applicationFormPage: ApplicationFormPage;
+let careerPage: CareerPage;
 let driver: WebDriverWrapper;
 let homePage: HomePage;
-let careerPage: CareerPage;
-let applicationFormPage: ApplicationFormPage;
 let navigation: NavigationComponent;
 
 // Get target browser from environment variable
@@ -80,10 +79,11 @@ describe(`Filling in application form tests - ${browserName} tests`, function() 
     });
 
     it('Form can be submitted', async function() {
-        applicationFormPage.refreshPage();
-        applicationFormPage.fillInWholeForm();
-        applicationFormPage.clickSubmitButton();
-        assert(await applicationFormPage.isFormSubmitted());
+        await applicationFormPage.refreshPage();
+        await applicationFormPage.fillInWholeForm();
+        await applicationFormPage.clickSubmitButton();
+        const isSubmitted = await applicationFormPage.isFormSubmitted();
+        assert(isSubmitted);
     });
 });
 

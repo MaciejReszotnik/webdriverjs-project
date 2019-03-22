@@ -1,15 +1,17 @@
 import 'chromedriver';
 import 'geckodriver';
 import 'mocha';
-import * as request from 'request';
 import * as assert from 'assert';
+import * as request from 'request';
 import * as expectedResult from './data/expectedResults.json';
-import { WebDriverWrapper } from './helpers/webdriverWrapper';
-import { HomePage } from './pageObjects/homePage';
-import { WebAutomationPage } from './pageObjects/webAutomationPage.js';
-
-import { NavigationComponent } from './pageObjects/pageComponents/navigationComponent';
 import { describe, it, after, before } from 'selenium-webdriver/testing';
+import { HomePage } from './pageObjects/homePage';
+import { NavigationComponent } from './pageObjects/pageComponents/navigationComponent';
+import { WebAutomationPage } from './pageObjects/webAutomationPage.js';
+import { WebDriverWrapper } from './helpers/webdriverWrapper';
+
+
+
 
 let driver: WebDriverWrapper;
 let homePage: HomePage;
